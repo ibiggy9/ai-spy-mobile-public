@@ -29,7 +29,7 @@ class NotificationService {
       // Request permission for notifications
       const granted = await this.requestPermission();
       if (!granted) {
-        console.warn('⚠️ Notification permissions not granted');
+        console.warn('Notification permissions not granted');
         return false;
       }
 
@@ -40,10 +40,10 @@ class NotificationService {
       this.setupNotificationHandlers();
 
       this.isInitialized = true;
-      console.log('✅ NotificationService initialized successfully');
+      console.log('NotificationService initialized successfully');
       return true;
     } catch (error) {
-      console.error('❌ Failed to initialize NotificationService:', error);
+      console.error('Failed to initialize NotificationService:', error);
       return false;
     }
   }
@@ -64,11 +64,11 @@ class NotificationService {
       }
       
       if (finalStatus !== 'granted') {
-        console.log('❌ Notification permission denied');
+        console.log('Notification permission denied');
         return false;
       }
 
-      console.log('✅ Notification permission granted');
+      console.log('Notification permission granted');
       return true;
     } catch (error) {
       console.error('Error requesting notification permission:', error);
@@ -80,11 +80,11 @@ class NotificationService {
     try {
       const token = (await Notifications.getExpoPushTokenAsync()).data;
       if (token) {
-        console.log('📱 Expo Push Token:', token.substring(0, 20) + '...');
+        console.log('Expo Push Token:', token.substring(0, 20) + '...');
         await AsyncStorage.setItem('expo_push_token', token);
         return token;
       } else {
-        console.warn('⚠️ No Expo push token available');
+        console.warn('No Expo push token available');
         return null;
       }
     } catch (error) {
@@ -92,8 +92,8 @@ class NotificationService {
       
       // For development builds, this error is common and doesn't prevent the app from working
       if (error.message?.includes('aps-environment')) {
-        console.warn('⚠️ Development build detected - push notifications will work after rebuilding with updated app.json');
-        console.warn('⚠️ Note: Local notifications will still work for testing');
+        console.warn('Development build detected - push notifications will work after rebuilding with updated app.json');
+        console.warn('Note: Local notifications will still work for testing');
       }
       
       return null;
@@ -121,7 +121,7 @@ class NotificationService {
   setupNotificationHandlers() {
     // Handle incoming notifications when app is running
     this.notificationListener = Notifications.addNotificationReceivedListener(notification => {
-      console.log('🔔 Notification received:', notification);
+      console.log('Notification received:', notification);
       
       try {
         const data = notification.request.content.data;
@@ -146,7 +146,7 @@ class NotificationService {
 
     // Handle notification taps
     this.responseListener = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log('🔔 Notification tapped:', response);
+      console.log('Notification tapped:', response);
       
       try {
         const data = response.notification.request.content.data;
@@ -198,7 +198,7 @@ class NotificationService {
         })
       );
       
-      console.log(`💾 Stored notification update for job ${jobId}`);
+      console.log(`Stored notification update for job ${jobId}`);
     } catch (error) {
       console.error('Error handling job notification:', error);
     }
@@ -208,7 +208,7 @@ class NotificationService {
   registerJobCallbacks(jobId, callbacks) {
     if (!jobId) return;
     
-    console.log(`📝 Registering callbacks for job ${jobId}`);
+    console.log(`Registering callbacks for job ${jobId}`);
     this.jobCallbacks.set(jobId, callbacks);
     
     // Auto-cleanup after 30 minutes to prevent memory leaks
@@ -221,7 +221,7 @@ class NotificationService {
   unregisterJobCallbacks(jobId) {
     if (this.jobCallbacks.has(jobId)) {
       this.jobCallbacks.delete(jobId);
-      console.log(`🗑️ Unregistered callbacks for job ${jobId}`);
+      console.log(`Unregistered callbacks for job ${jobId}`);
     }
   }
 
@@ -246,7 +246,7 @@ class NotificationService {
       
       if (storedUpdate) {
         const updateData = JSON.parse(storedUpdate);
-        console.log(`📬 Found pending update for job ${jobId}:`, updateData);
+        console.log(`Found pending update for job ${jobId}:`, updateData);
         
         // Remove the stored update
         await AsyncStorage.removeItem(updateKey);
@@ -277,7 +277,7 @@ class NotificationService {
             const parsed = JSON.parse(data);
             if (parsed.receivedAt && parsed.receivedAt < oneDayAgo) {
               await AsyncStorage.removeItem(key);
-              console.log(`🧹 Cleaned up old update: ${key}`);
+              console.log(`Cleaned up old update: ${key}`);
             }
           }
         } catch (error) {
@@ -315,14 +315,14 @@ class NotificationService {
       await Notifications.scheduleNotificationAsync({
         content: {
           title: "AI-SPY Test",
-          body: 'Push notifications are working! 🎉',
+          body: 'Push notifications are working!',
           data: { test: true },
         },
         trigger: { seconds: 1 },
       });
-      console.log('✅ Test notification scheduled');
+      console.log('Test notification scheduled');
     } catch (error) {
-      console.error('❌ Error sending test notification:', error);
+      console.error('Error sending test notification:', error);
     }
   }
 
@@ -338,14 +338,14 @@ class NotificationService {
 
       await Notifications.scheduleNotificationAsync({
         content: {
-          title: "🎉 Audio Processing Complete",
+          title: "Audio Processing Complete",
           body: 'Your audio file has been processed successfully!',
           data: testData,
         },
         trigger: { seconds: 2 },
       });
       
-      console.log('📧 Test job notification scheduled for job:', jobId);
+      console.log('Test job notification scheduled for job:', jobId);
       return true;
     } catch (error) {
       console.error('Failed to schedule test job notification:', error);

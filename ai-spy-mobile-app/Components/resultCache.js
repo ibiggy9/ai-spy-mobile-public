@@ -12,7 +12,7 @@ class ResultCacheService {
     try {
       // Clear any existing cache to prevent old structure issues
       await this.clearAllCache();
-      console.log('🔄 Cache service initialized');
+      console.log('Cache service initialized');
     } catch (error) {
       console.error('Failed to initialize cache service:', error);
     }
@@ -28,7 +28,7 @@ class ResultCacheService {
       
       // Validate that result has the expected structure
       if (!result || typeof result !== 'object') {
-        console.warn('⚠️ Invalid result data, skipping cache');
+        console.warn('Invalid result data, skipping cache');
         return;
       }
       
@@ -42,7 +42,7 @@ class ResultCacheService {
       };
       
       await AsyncStorage.setItem(this.COMPLETED_RESULTS_KEY, JSON.stringify(cacheData));
-      console.log(`📦 Cached results for job ${jobId}`);
+      console.log(`Cached results for job ${jobId}`);
     } catch (error) {
       console.error('Failed to cache result:', error);
     }
@@ -60,7 +60,7 @@ class ResultCacheService {
       
       // Validate cache structure - if it's old/corrupted, clear it
       if (!cacheData.jobId || !cacheData.result || typeof cacheData.result !== 'object') {
-        console.warn('⚠️ Invalid cache structure detected, clearing cache');
+        console.warn('Invalid cache structure detected, clearing cache');
         await this.clearAllCache();
         return null;
       }
@@ -91,7 +91,7 @@ class ResultCacheService {
             cachedAt: cacheData.cachedAt
           }];
         } else {
-          console.warn('⚠️ Cached result has invalid structure, clearing cache');
+          console.warn('Cached result has invalid structure, clearing cache');
           await this.clearAllCache();
         }
       }
@@ -112,7 +112,7 @@ class ResultCacheService {
       if (cacheData && cacheData.jobId === jobId) {
         // Clear the cache since it's been viewed
         await this.clearAllCache();
-        console.log(`🗑️ Cleared cache for viewed job ${jobId}`);
+        console.log(`Cleared cache for viewed job ${jobId}`);
       }
     } catch (error) {
       console.error('Failed to mark result as shown:', error);

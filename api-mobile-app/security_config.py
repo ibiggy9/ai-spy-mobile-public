@@ -1,6 +1,6 @@
 """
 Security Configuration for Production Deployment
-This file contains all security-related configurations and should be reviewed before production deployment.
+Security-related configurations for production deployment.
 """
 
 import os
@@ -15,7 +15,7 @@ class SecurityConfig:
     
     # Rate Limiting (requests per minute per IP)
     # Uses in-memory storage optimized for Cloud Run auto-scaling
-    # Note: Vercel provides additional frontend rate limiting via WAF
+    
     RATE_LIMITS = {
         "auth_token": "10/minute",     # Conservative for token generation
         "transcribe": "5/minute",      # Heavy operation, limit carefully

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # AI-SPY Mobile API - Curl Test Commands
-# This script provides example curl commands to test file submission
+# Example curl commands to test file submission
 
 API_BASE="http://localhost:8000"
 TEST_FILE="../test_simple.mp3"

@@ -145,7 +145,7 @@ class FileValidator {
 
   /**
    * Validate file header (basic check)
-   * Note: This is limited on mobile, but provides some protection
+   
    * @param {Object} file - File object
    * @returns {Promise<Object>} - Validation result
    */

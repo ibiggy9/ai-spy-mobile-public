@@ -29,14 +29,14 @@ export default function App() {
       try {
         const initialized = await notificationService.initialize();
         if (initialized) {
-          console.log('✅ Notification service initialized successfully');
+          console.log('Notification service initialized successfully');
           // Clean up old updates on app start
           await notificationService.cleanupOldUpdates();
         } else {
-          console.warn('⚠️ Notification service initialization failed');
+          console.warn('Notification service initialization failed');
         }
       } catch (error) {
-        console.error('❌ Failed to initialize notification service:', error);
+        console.error('Failed to initialize notification service:', error);
       }
     };
     

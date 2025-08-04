@@ -59,7 +59,7 @@ const jobCompletionUtils = {
     try {
       // Use the new result cache service instead
       await resultCache.cacheResult(jobId, result, null);
-      console.log(`📦 Stored completion using resultCache for job ${jobId}`);
+      console.log(`Stored completion using resultCache for job ${jobId}`);
     } catch (error) {
       console.error('Error storing job completion:', error);
     }
@@ -69,7 +69,7 @@ const jobCompletionUtils = {
     try {
       // Get unshown results from the cache
       const unshownResults = await resultCache.getUnshownCompletedResults();
-      console.log(`📦 Retrieved ${unshownResults.length} unshown completed jobs from cache`);
+      console.log(`Retrieved ${unshownResults.length} unshown completed jobs from cache`);
       
       // Convert to old format for compatibility
       const completedJobs = unshownResults.map(cachedResult => ({
@@ -243,7 +243,7 @@ export default function Home({navigation}) {
           const unshownResults = await resultCache.getUnshownCompletedResults();
           
           for (const completedJob of unshownResults) {
-            console.log('🎉 Home: Showing cached completed analysis');
+            console.log('Home: Showing cached completed analysis');
             handleProcessingComplete(completedJob.result, completedJob.transcriptionData);
             await resultCache.markResultAsShown(completedJob.jobId);
           }

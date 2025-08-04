@@ -153,8 +153,7 @@ class ChatService:
             
             # Add analysis results to context if available
             if analysis_results:
-                # Debug: Log what we're receiving
-                logger.info(f"Chat context building - analysis_results keys: {list(analysis_results.keys())}")
+
                 
                 analysis_context = f"""
                     Current Analysis Results:
@@ -183,17 +182,7 @@ class ChatService:
                     chunk_results = analysis_results['chunk_results']
                     logger.info(f"Found chunk_results direct: {len(chunk_results)} chunks")
 
-                # Debug: Check if any chunks have embeddings
-                if chunk_results:
-                    embeddings_count = sum(1 for chunk in chunk_results if chunk.get('embeddings'))
-                    logger.info(f"Total chunks with embeddings: {embeddings_count}/{len(chunk_results)}")
-                    
-                    # Sample first chunk for debugging
-                    if chunk_results:
-                        sample_chunk = chunk_results[0]
-                        has_embeddings = 'embeddings' in sample_chunk
-                        embeddings_len = len(sample_chunk.get('embeddings', [])) if has_embeddings else 0
-                        logger.info(f"Sample chunk has embeddings: {has_embeddings}, length: {embeddings_len}")
+
 
                 if chunk_results:
                     analysis_context += f"\nDetailed Chunk Analysis with Complete Embeddings:\n"
@@ -217,8 +206,6 @@ class ChatService:
                         analysis_context += f"- Total chunks with embeddings: {len(embeddings_available)}\n"
                         analysis_context += f"- Embedding dimension: 64\n"
                         analysis_context += f"- Complete embeddings data structure available for deep analysis\n"
-                    else:
-                        analysis_context += f"\nNote: No embeddings found in {len(chunk_results)} chunks. This may indicate an older analysis or processing issue.\n"
                 
                 if analysis_results.get('transcription_data'):
                     full_transcription = analysis_results['transcription_data'].get('text', '')
@@ -226,15 +213,6 @@ class ChatService:
                         analysis_context += f"- Full Transcription: \"{full_transcription}\"\n"
                     else:
                         analysis_context += "- No transcription available\n"
-                
-                # Add note about embeddings availability for technical discussions
-                has_embeddings = False
-                if analysis_results.get('result') and isinstance(analysis_results['result'], dict):
-                    chunk_results = analysis_results['result'].get('chunk_results', [])
-                    has_embeddings = any(chunk.get('embeddings') for chunk in chunk_results)
-                
-                if has_embeddings:
-                    analysis_context += "\nNote: This analysis includes 64-dimensional embeddings from the neural network's feature extraction layer, providing semantic representation of each audio segment's acoustic characteristics.\n"
                 
                 current_context = f"{INITIAL_CHAT_CONTEXT}\n\n{analysis_context}"
             

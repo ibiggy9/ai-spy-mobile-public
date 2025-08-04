@@ -50,11 +50,11 @@ class EnhancedApiService {
           
           if (testResponse.ok) {
             // Token is valid (200 OK means authenticated)
-            console.log('✅ Existing token is valid');
+            console.log('Existing token is valid');
             return token;
           } else if (testResponse.status === 401) {
             // Token is expired or invalid
-            console.log('🔄 Existing token is expired, generating new token...');
+            console.log('Existing token is expired, generating new token...');
             token = null; // Clear the token so we generate a new one
           }
         } catch (testError) {
@@ -68,7 +68,7 @@ class EnhancedApiService {
         token = await this.generateNewToken();
         if (token) {
           await SecureStore.setItemAsync('authToken', token);
-          console.log('✅ New token generated and stored');
+          console.log('New token generated and stored');
         }
       }
       
@@ -216,7 +216,7 @@ class EnhancedApiService {
         return null;
       }
       
-      console.log('✅ Successfully extracted user ID from custom token:', clientId);
+      console.log('Successfully extracted user ID from custom token:', clientId);
       return clientId;
     } catch (error) {
       console.error('Failed to extract user ID from custom token:', error);
@@ -226,12 +226,12 @@ class EnhancedApiService {
 
   async clearAuthToken() {
     try {
-      console.log('🗑️ Clearing authentication token...');
+      console.log('Clearing authentication token...');
       this.authToken = null;
       await SecureStore.deleteItemAsync('authToken');
       // Also clear the old key name for backward compatibility
       await SecureStore.deleteItemAsync('auth_token');
-      console.log('✅ Authentication token cleared');
+      console.log('Authentication token cleared');
     } catch (error) {
       console.error('❌ Error clearing auth token:', error);
     }

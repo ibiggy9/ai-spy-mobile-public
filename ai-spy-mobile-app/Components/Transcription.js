@@ -21,10 +21,10 @@ export default function Transcription({
       console.log("Has text:", Boolean(transcriptionData.text));
     }
     
-    console.log("🔍 AI detection results:", aiDetectionResults ? `${aiDetectionResults.length} items` : "none");
+    console.log("AI detection results:", aiDetectionResults ? `${aiDetectionResults.length} items` : "none");
     if (aiDetectionResults && aiDetectionResults.length > 0) {
-      console.log("🔍 First AI detection item:", aiDetectionResults[0]);
-      console.log("🔍 Sample predictions:", aiDetectionResults.slice(0, 3).map(r => ({ 
+              console.log("First AI detection item:", aiDetectionResults[0]);
+        console.log("Sample predictions:", aiDetectionResults.slice(0, 3).map(r => ({ 
         timestamp: r.timestamp, 
         prediction: r.prediction, 
         confidence: r.confidence 
@@ -51,18 +51,18 @@ export default function Transcription({
       return "text-white";
     }
 
-    // Debug: Log the raw result object
-    console.log(`🔍 Raw result for timestamp ${timestamp}:`, JSON.stringify(result, null, 2));
+
+    console.log(`Raw result for timestamp ${timestamp}:`, JSON.stringify(result, null, 2));
 
     // Use ai_probability directly if available, otherwise calculate from prediction and confidence
     let aiProbabilityPercent;
     if (result.ai_probability !== undefined) {
       // Use the ai_probability field directly (already 0-1 scale)
       aiProbabilityPercent = result.ai_probability * 100;
-      console.log(`✅ Using ai_probability directly: ${result.ai_probability} -> ${aiProbabilityPercent.toFixed(1)}%`);
+      console.log(`Using ai_probability directly: ${result.ai_probability} -> ${aiProbabilityPercent.toFixed(1)}%`);
     } else {
       // Fallback to calculation from prediction and confidence
-      console.log(`⚠️ ai_probability not found, calculating from prediction and confidence`);
+              console.log(`ai_probability not found, calculating from prediction and confidence`);
       const isPredictionAI = result.prediction === "AI";
       const aiProbability = isPredictionAI ? result.confidence : 1 - result.confidence;
       aiProbabilityPercent = aiProbability * 100;

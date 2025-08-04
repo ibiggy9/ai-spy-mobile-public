@@ -6,8 +6,7 @@ import {getFirestore, Timestamp, FieldValue} from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 import { getDatabase} from 'firebase/database'
 
-// IMPORTANT: Replace this with your actual Firebase config
-// Get these values from your Firebase project console
+// Replace with your actual Firebase config
 const firebaseConfig = {
     apiKey: "your_firebase_api_key_here",
     authDomain: "your-project-id.firebaseapp.com",

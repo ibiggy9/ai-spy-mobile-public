@@ -1,5 +1,5 @@
 // Example Configuration for AI-SPY Mobile App
-// Copy this file to config.js and replace placeholder values with actual configuration
+// Copy to config.js and replace with actual configuration
 
 const config = {
   // API Configuration

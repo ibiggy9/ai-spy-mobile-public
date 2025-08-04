@@ -284,13 +284,13 @@ async def get_auth_token(request: Request):
             print(f"Using provided app_user_id: {client_id}")
         else:
             client_id = str(uuid.uuid4())
-            print(f"Generated new client_id: {client_id}")
+        
         
         # Generate a token with 1-hour expiration
         token = generate_auth_token(client_id, expiry_seconds=3600)
         
         # Log token generation
-        print(f"Generated token for client_id: {client_id}")
+    
         
         return {
             "token": token,
@@ -340,7 +340,7 @@ async def get_user_subscription_status(user_id: str) -> bool:
     This should integrate with your actual subscription system (Stripe, etc.)
     """
     try:
-        # TODO: Replace this with actual subscription validation logic
+    
         # For now, this is a placeholder that should be connected to your Stripe API
         # or database to check actual subscription status
         
@@ -426,7 +426,7 @@ class SubscriptionInfo(BaseModel):
     has_subscription: bool = False
 
 
-# Add this function to sanitize filenames
+# Sanitize filenames
 def sanitize_filename(filename):
     """Thoroughly sanitize a filename to prevent path traversal and command injection"""
     # Extract just the base filename, no path components
@@ -451,7 +451,7 @@ def sanitize_filename(filename):
     
     return base_name
 
-# Add this function to validate file content
+# Validate file content
 async def validate_audio_file(file_content):
     """Validate file is audio using magic bytes"""
     # Common magic bytes for audio files
@@ -683,7 +683,7 @@ async def generate_upload_url(request: SignedUrlRequest, authorization: str = He
 
         bucket = storage_client.bucket(bucket_name)
         unique_filename = f"{datetime.now(timezone.utc).timestamp()}-{sanitized_filename}"
-        print(f"Generated filename: {unique_filename}")
+    
         blob = bucket.blob(unique_filename)
 
         print("Generating signed URL...")
@@ -693,7 +693,7 @@ async def generate_upload_url(request: SignedUrlRequest, authorization: str = He
             method="PUT",
             content_type=request.file_type,
         )
-        print(f"Generated URL successfully")
+    
         
         # Log successful URL generation
         await log_security_event(
@@ -728,7 +728,7 @@ async def transcribe_audio(request: Request, file: UploadFile, has_subscription:
     token = authorization.replace("Bearer ", "")
     is_valid, user_id = validate_auth_token(token)
     
-    print(f"Starting transcription for file: {file.filename}, subscription: {has_subscription}")
+
     
     # Use standardized validation (same as analyze endpoint)
     # Step 1: Initial validation without content
@@ -809,11 +809,11 @@ async def transcribe_audio(request: Request, file: UploadFile, has_subscription:
             with open(temp_local_path, "wb") as buffer:
                 buffer.write(content_bytes)
             
-            print(f"Calling transcribe_audio_file with file: {temp_local_path}")
+        
             # Call our transcribe_audio_file function
             transcription_result = await transcribe_audio_file(temp_local_path)
             
-            print(f"Got transcription result with {len(transcription_result.get('words', []))} words")
+        
             
             # Apply subscription limits
             if not has_subscription and "words" in transcription_result:
@@ -822,9 +822,7 @@ async def transcribe_audio(request: Request, file: UploadFile, has_subscription:
                 transcription_result["is_limited"] = True
             
             # Add debug log
-            print(f"Transcription completed successfully with {len(transcription_result.get('words', []))} words")
-            print(f"Is transcription result None? {transcription_result is None}")
-            print(f"Transcription result keys: {transcription_result.keys() if transcription_result else 'None'}")
+            
             
             # Return results with subscription-based limitations
             return JSONResponse(content=transcription_result)
@@ -857,7 +855,7 @@ async def create_report(request: ReportRequest):
         print(f"Checking if file exists in GCS...")
         if not blob.exists():
             raise HTTPException(status_code=404, detail="File not found in storage")
-        print(f"File found in GCS")
+    
         
         # Check if file was recently uploaded (within past minute)
         file_metadata = blob.metadata or {}
@@ -877,7 +875,7 @@ async def create_report(request: ReportRequest):
             "bucket_name": request.bucket_name,
             "file_name": request.file_name
         }
-        print(f"Created task payload: {payload}")
+    
 
         base_url = os.getenv('WORKER_URL').rstrip('/')
         worker_url = f"{base_url}/process-report"
@@ -902,7 +900,7 @@ async def create_report(request: ReportRequest):
         print("Adding task to queue...")
         response = tasks_client.create_task(request={"parent": parent, "task": task})
         task_id = response.name.split('/')[-1]
-        print(f"Created task with ID: {task_id}")
+    
 
         jobs[task_id] = {"status": "pending", "chat_message_count": 0}
         return {"task_id": task_id, "status": "pending"}
@@ -920,7 +918,7 @@ async def get_report_status(task_id: str, has_subscription: bool = False, author
     print(f"Checking status for task: {task_id}, has_subscription: {has_subscription}")
 
     if task_id not in jobs:
-        print(f"Task {task_id} not found in jobs")
+    
         return {"status": "pending", "results": None, "error": None}
 
     job = jobs[task_id]
