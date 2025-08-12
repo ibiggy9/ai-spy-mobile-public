@@ -1,0 +1,23 @@
+# Dependencies and builds
+node_modules
+ai-spy-mobile-app/node_modules
+ai-spy-mobile-app/ios/Pods
+ai-spy-mobile-app/android/app/build
+ai-spy-mobile-app/android/build
+ai-spy-mobile-app/dist
+
+# Generated/compiled
+**/*.min.js
+**/*.bundle.js
+
+# Binaries
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.gif
+**/*.mp3
+**/*.wav
+**/*.pth
+
+# Python cache
+api-mobile-app/__pycache__

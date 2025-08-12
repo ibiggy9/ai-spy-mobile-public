@@ -1,0 +1,200 @@
+# General
+.DS_Store
+*.log
+*.pid
+*.seed
+*.pid.lock
+*.swp
+*.swo
+
+# Node / React Native
+node_modules/
+yarn.lock
+package-lock.json
+.expo/
+.expo-shared/
+dist/
+coverage/
+
+# iOS
+ai-spy-mobile-app/ios/build/
+ai-spy-mobile-app/ios/DerivedData/
+ai-spy-mobile-app/ios/Pods/
+ai-spy-mobile-app/ios/**/xcuserdata/
+ai-spy-mobile-app/ios/**/xcshareddata/WorkspaceSettings.xcsettings
+
+# Android
+ai-spy-mobile-app/android/.gradle/
+ai-spy-mobile-app/android/build/
+ai-spy-mobile-app/android/app/build/
+ai-spy-mobile-app/android/local.properties
+ai-spy-mobile-app/android/app/debug.keystore
+*.keystore
+*.jks
+
+# Expo / Metro
+ai-spy-mobile-app/dist/
+ai-spy-mobile-app/.expo/
+ai-spy-mobile-app/.expo-shared/
+
+# Environment / credentials
+.env
+**/.env
+ai-spy-mobile-app/config.js
+api-mobile-app/.env
+api-mobile-app/*.json
+api-mobile-app/*.pem
+api-mobile-app/*.p12
+api-mobile-app/*.p8
+api-mobile-app/*.key
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+.venv/
+venv/
+ENV/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Model/artifacts
+api-mobile-app/best_best_85_balanced.pth
+**/*.pth
+
+# Media outputs and samples
+api-mobile-app/output.mp3
+api-mobile-app/test_audio.wav
+
+# AI-SPY Project - Root .gitignore
+
+# Environment and Configuration Files
+.env
+.env.local
+.env.production
+.env.development
+*.env
+config.js
+service-account*.json
+credentials.json
+*.pem
+*.key
+
+# API Keys and Secrets
+api_keys.txt
+secrets.yaml
+secrets.yml
+*.secret
+
+# Google Cloud
+gcp-credentials.json
+service-account-key.json
+ai-spy-mlops-*.json
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+myenv/
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary Files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Build and Distribution
+build/
+dist/
+*.tgz
+*.tar.gz
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Audio/Video Files (for testing)
+*.mp3
+*.wav
+*.mp4
+*.avi
+*.mov
+
+# Model Files (large files)
+*.pth
+*.pt
+*.h5
+*.onnx
+*.pb
+
+# Documentation with sensitive info
+README_SECRETS.md
+SECURITY.md 

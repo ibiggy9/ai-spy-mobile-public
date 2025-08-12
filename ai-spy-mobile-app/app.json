@@ -1,0 +1,91 @@
+{
+  "expo": {
+    "name": "Ai-SPY",
+    "slug": "AISpyMobile",
+    "version": "1.6.4",
+    "sdkVersion": "53.0.0",
+    "jsEngine": "jsc",
+    "orientation": "portrait",
+    "icon": "./assets/aispyAppIcon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/SplashNew.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000000"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "buildNumber": "1.5.0",
+      "bundleIdentifier": "com.ibiggy.AISpyMobile",
+      "splash": {
+        "image": "./assets/SplashNew.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#000000",
+        "tabletImage": "./assets/SplashNew.png"
+      },
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": false,
+          "NSAllowsArbitraryLoadsInWebContent": false,
+          "NSExceptionDomains": {
+            "your-api-domain.com": {
+              "NSExceptionRequiresForwardSecrecy": false,
+              "NSExceptionMinimumTLSVersion": "TLSv1.2",
+              "NSExceptionAllowsInsecureHTTPLoads": false,
+              "NSIncludesSubdomains": true
+            }
+          }
+        },
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.ibiggy.AISpyMobile"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "96a8aa7c-4e75-4963-8f61-e75c94e754d8"
+      }
+    },
+    "plugins": [
+      "expo-asset",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "networkInspector": false,
+            "flipper": false
+          },
+          "android": {
+            "networkInspector": false,
+            "usesCleartextTraffic": false
+          }
+        }
+      ],
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/aispyAppIcon.png",
+          "color": "#000000",
+          "mode": "production"
+        }
+      ]
+    ],
+    "owner": "ibiggy",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/96a8aa7c-4e75-4963-8f61-e75c94e754d8"
+    }
+  }
+}

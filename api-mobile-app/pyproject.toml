@@ -1,0 +1,24 @@
+[tool.black]
+line-length = 100
+skip-string-normalization = true
+target-version = ["py39"]
+
+[tool.ruff]
+line-length = 100
+select = [
+  "E",  # pycodestyle errors
+  "F",  # pyflakes
+  "I",  # isort
+  "UP", # pyupgrade
+  "B",  # bugbear
+  "S",  # flake8-bandit (security)
+  "C4", # flake8-comprehensions
+  "SIM",# flake8-simplify
+  "ERA" # eradicate (commented-out code)
+]
+ignore = [
+  "E501" # handled by black
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["api-mobile-app"]

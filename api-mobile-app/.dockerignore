@@ -1,0 +1,55 @@
+# Development files
+test_*.py
+*_test.py
+TEST_*.md
+*.test.js
+
+# Environment files
+.env*
+env.*
+
+# Documentation
+README.md
+*.md
+
+# Git
+.git
+.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Media files (test data)
+*.mp3
+*.wav
+*.m4a
+*.mp4
+
+# Deployment scripts (not needed in container)
+deploy-*.sh
+cloud-run-deploy.sh
+push_to_cloud.py 
